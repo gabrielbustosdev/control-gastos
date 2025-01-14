@@ -5,6 +5,7 @@ import DatePicker from 'react-date-picker';
 import 'react-calendar/dist/Calendar.css';
 import 'react-date-picker/dist/DatePicker.css';
 import ErrorMessage from "./ErrorMessage";
+import { useBudget } from "../hooks/useBudget";
 
 export default function ExpenseForm() {
 
@@ -16,13 +17,14 @@ export default function ExpenseForm() {
     })
 
     const [error, setError] = useState('')
+    const { dispatch } = useBudget()
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement> ) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = e.target
         const isAmountField = ['amount'].includes(name)
         setExpense({
             ...expense,
-            [name] : isAmountField ? +value : value 
+            [name]: isAmountField ? +value : value
         })
     }
 
@@ -36,13 +38,22 @@ export default function ExpenseForm() {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        //validar
-        if(Object.values(expense).includes('')) {
+        // Validar
+        if (Object.values(expense).includes('')) {
             setError('Todos los campos son obligatorios')
             return
         }
 
-        console.log('Todo bien...')
+        // Agregar nuevo gasto
+        dispatch({ type: 'add-expense', payload: { expense } })
+
+        // Reiniciar el state
+        setExpense({
+            amount: 0,
+            expenseName: '',
+            category: '',
+            date: new Date()
+        })
     }
 
     return (
@@ -67,6 +78,7 @@ export default function ExpenseForm() {
                     className="bg-slate-100 p-2"
                     name="expenseName"
                     onChange={handleChange}
+                    value={expense.expenseName}
                 />
             </div>
 
@@ -82,6 +94,7 @@ export default function ExpenseForm() {
                     className="bg-slate-100 p-2"
                     name="amount"
                     onChange={handleChange}
+                    value={expense.amount}
                 />
             </div>
 
@@ -95,7 +108,8 @@ export default function ExpenseForm() {
                     className="bg-slate-100 p-2"
                     name="category"
                     onChange={handleChange}
-                    >
+                    value={expense.category}
+                >
                     <option value="">-- Seleccione --</option>
                     {categories.map(category => (
                         <option
