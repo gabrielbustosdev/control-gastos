@@ -16,3 +16,10 @@ Esta es una aplicación de presupuesto que permite a los usuarios gestionar sus 
 ### Manejo del Estado con Context API
 
 La aplicación utiliza Context API para manejar el estado global, lo que permite una gestión eficiente de los datos sin necesidad de pasar props a través de múltiples niveles de componentes. El estado global incluye el presupuesto, la lista de gastos, el estado del modal y la categoría actual para el filtrado de gastos.
+
+### Demo en Vivo
+
+Puedes ver la demo en vivo de la aplicación desplegada en Vercel en el siguiente enlace: [Demo en Vercel](https://control-gastos-kohl-eight.vercel.app/)
+
+Haz clic en el enlace para probar la aplicación y explorar sus funcionalidades. Podrás agregar, actualizar y eliminar gastos, así como filtrar los gastos por categoría y establecer un presupuesto.
+
