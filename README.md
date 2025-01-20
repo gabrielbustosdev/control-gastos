@@ -1,50 +1,18 @@
-# React + TypeScript + Vite
+# Aplicación de Presupuesto
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Descripción
 
-Currently, two official plugins are available:
+Esta es una aplicación de presupuesto que permite a los usuarios gestionar sus gastos de manera eficiente. Los usuarios pueden agregar, actualizar y eliminar gastos, así como filtrar los gastos por categoría. La aplicación también permite establecer un presupuesto y ver el total de gastos en comparación con el presupuesto establecido.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tecnologías Utilizadas
 
-## Expanding the ESLint configuration
+- **React**: Biblioteca principal para la construcción de la interfaz de usuario.
+- **TypeScript**: Lenguaje utilizado para agregar tipado estático a JavaScript, mejorando la calidad del código y la detección de errores.
+- **Context API**: Utilizado para manejar el estado global de la aplicación, permitiendo compartir datos entre componentes sin necesidad de pasar props manualmente.
+- **uuid**: Biblioteca utilizada para generar identificadores únicos para los gastos.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Puntos Claves
 
-- Configure the top-level `parserOptions` property like this:
+### Manejo del Estado con Context API
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+La aplicación utiliza Context API para manejar el estado global, lo que permite una gestión eficiente de los datos sin necesidad de pasar props a través de múltiples niveles de componentes. El estado global incluye el presupuesto, la lista de gastos, el estado del modal y la categoría actual para el filtrado de gastos.
